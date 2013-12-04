@@ -1,0 +1,2 @@
+#!/usr/bin/env ruby
+ARGF.each{|s| puts s.split.each{|i| i.capitalize!}.join(' ')}
