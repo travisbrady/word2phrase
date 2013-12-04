@@ -1,0 +1,24 @@
+OASISFormat: 0.3
+Name:        word2phrase
+Version:     0.1
+Synopsis:    word2phrase
+Authors:     Travis Brady
+License:     MIT
+Plugins:     META (0.3)
+
+Library word2phrase
+  Path:             lib
+  FindlibName:      word2phrase
+  BuildTools:       ocamlbuild
+  BuildDepends:     core, threads
+  CompiledObject:   best
+  Modules:          Word2phrase
+
+Executable word2phrase_test 
+  Path:             lib_test
+  BuildTools:       ocamlbuild
+  BuildDepends:     word2phrase, threads
+  CompiledObject:   native
+  MainIs:           word2phrase_test.ml
+  Install:          false
+

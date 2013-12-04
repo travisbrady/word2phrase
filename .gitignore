@@ -4,4 +4,6 @@
 _build
 *.cm*
 *.native
+setup.data
+setup.log
 

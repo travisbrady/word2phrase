@@ -1,0 +1,27 @@
+# OASIS_START
+# DO NOT EDIT (digest: 06e00c0213fd256d320b50659b4eacbe)
+# Ignore VCS directories, you can use the same kind of rule outside 
+# OASIS_START/STOP if you want to exclude directories that contains 
+# useless stuff for the build process
+<**/.svn>: -traverse
+<**/.svn>: not_hygienic
+".bzr": -traverse
+".bzr": not_hygienic
+".hg": -traverse
+".hg": not_hygienic
+".git": -traverse
+".git": not_hygienic
+"_darcs": -traverse
+"_darcs": not_hygienic
+# Library word2phrase
+"lib/word2phrase.cmxs": use_word2phrase
+<lib/*.ml{,i}>: pkg_threads
+<lib/*.ml{,i}>: pkg_core
+# Executable word2phrase_test
+"lib_test/word2phrase_test.native": use_word2phrase
+"lib_test/word2phrase_test.native": pkg_threads
+"lib_test/word2phrase_test.native": pkg_core
+<lib_test/*.ml{,i}>: use_word2phrase
+<lib_test/*.ml{,i}>: pkg_threads
+<lib_test/*.ml{,i}>: pkg_core
+# OASIS_STOP
