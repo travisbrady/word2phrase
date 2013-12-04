@@ -4,6 +4,13 @@ word2phrase
 Python port of Mikolov's word2phrase.c from the word2vec toolkit
 
 Given a document or documents this program attempts to learn phrases.
+It does so by progressively joining adjacent pairs of words with an '_' character.
+You can then run the code multiple times to create multiword phrases.
+
+For more detail on this check out: https://code.google.com/p/word2vec/
+and Mikolov's paper: http://arxiv.org/abs/1310.4546
+
+The OCaml directory contains a simple ocaml implementation of the code.
 
 Example using the text8 corpus used in Mikolov's experiments:
 ```
