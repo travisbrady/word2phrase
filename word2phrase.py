@@ -69,7 +69,9 @@ def train_model(train_iter, min_count=5, threshold=100.0, sep='_'):
     """
     vocab_iter, train_iter = tee(train_iter)
     vocab, train_words = learn_vocab_from_train_iter(vocab_iter)
+    print "Done Vocab", len(vocab), train_words
     vocab = filter_vocab(vocab, min_count)
+    print "Filtered Vocab", len(vocab)
 
     for line in train_iter:
         out_sentence = []
@@ -94,22 +96,31 @@ def main():
     """
     When called as a script this mimics the original word2phrase.c
     With a couple exceptions:
-        1. We don't truncate words to 60 chars max as in the original
+        1. We don't truncate words to 60 chars as in the original
         2. Whitespace handling doesn't exactly match the original
     """
     from optparse import OptionParser
     p = OptionParser()
-    p.add_option('--train', dest='train_file')
-    p.add_option('--output', dest='output_file')
+    p.add_option('--train', dest='train_file', help='Input file')
+    p.add_option('--output', dest='output_file', help='Output file')
     p.add_option('--min-count', type="int", dest='min_count', default=5)
     p.add_option('--threshold', type="float", dest='threshold', default=100.0)
-    p.add_option('--sep', dest='sep', default='_')
+    p.add_option('--sep', dest='sep', default='_', help='Character used to separate phrases')
+    p.add_option('--iters', type='int', dest='iters',
+                 default=1, help='Number of times to run train_model. More runs = longer phrases')
+    p.add_option('--threshold-discount', type='float',
+                 dest='discount', default=0.05,
+                 help='% of initial value by which to decrement threshold with each iter')
     (options, _) = p.parse_args()
 
     train_file = (line.split() for line in file(options.train_file))
-    out = train_model(train_file, min_count=options.min_count,
-            threshold=options.threshold,
-            sep=options.sep)
+    out = train_file
+    for i in range(options.iters):
+        this_thresh = max(options.threshold - (i * options.discount * options.threshold), 0.0)
+        print "Iteration: %d Threshold: %6.2f" % (i, this_thresh)
+        out = train_model(out, min_count=options.min_count,
+                threshold=this_thresh,
+                sep=options.sep)
     out_fh = open(options.output_file, 'w')
     for row in out:
         out_fh.write(' '.join(row) + '\n')

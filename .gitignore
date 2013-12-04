@@ -1,1 +1,7 @@
 *.pyc
+.DS_Store
+*.o
+_build
+*.cm*
+*.native
+
