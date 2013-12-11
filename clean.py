@@ -13,6 +13,7 @@ for line in stdin:
     s = hp.unescape(s)
     s = s.lower()
     s = s.replace("'", '')
+    s = s.replace("’", '')
     s = s.replace('_', ' ')
     s = s.replace("\n", " ")
     s = re.sub(r'http[s]?://[^\s<>"]+|www\.[^\s<>"]+', ' URL ', s)

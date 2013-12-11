@@ -22,3 +22,19 @@ Executable word2phrase_test
   MainIs:           word2phrase_test.ml
   Install:          false
 
+Executable wordcount
+  Path:             lib_test
+  BuildTools:       ocamlbuild
+  BuildDepends:     core, threads
+  CompiledObject:   native
+  MainIs:           wordcount.ml
+  Install:          false
+
+Executable learn_vocab_tri
+  Path:             lib_test
+  BuildTools:       ocamlbuild
+  BuildDepends:     core, threads
+  CompiledObject:   native
+  MainIs:           learn_vocab_tri.ml
+  Install:          false
+
