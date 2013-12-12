@@ -16,6 +16,8 @@ for line in stdin:
     s = s.replace("’", '')
     s = s.replace('_', ' ')
     s = s.replace("\n", " ")
+    s = s.replace("\r", " ")
+    s = s.replace("\t", " ")
     s = re.sub(r'http[s]?://[^\s<>"]+|www\.[^\s<>"]+', ' URL ', s)
     s = re.sub(r'(^|[^@\w])@(\w{1,15})\b', ' USER ', s)
     s = re.sub(r'[^\w\s]', ' ', s)
