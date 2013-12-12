@@ -24,16 +24,23 @@ let rec triloop h lst =
 let () =
     let h = T.create () in
     let total_words = ref 0 in
+    let line_no = ref 0 in
+    eprintf "Start File Iter\n%!";
     In_channel.iter_lines stdin ~f:(fun line ->
+        incr line_no;
+        if !line_no mod 100_000 = 0 then eprintf "Line: %d\n%!" !line_no;
         let words = String.split line ~on:' ' in
         let n_words = List.length words in
         total_words := !total_words + n_words;
         triloop h words;
     );
+    eprintf "Done File Iter. Now Filter\n%!";
     T.filter_inplace h ~f:(fun ct -> ct > 4);
+    eprintf "Done Filter. Now to_alist\n";
     let al = T.to_alist h 
         |> List.sort ~cmp
     in
+    eprintf "Now Write file\n";
     printf "%d\n" !total_words;
-    List.iter al ~f:(fun (x, y) -> printf "%d %s\n" y x)
+    List.iter al ~f:(fun (x, y) -> printf "%s,%d\n" x y)
 
