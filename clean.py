@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import re
 from sys import stdin
 from json import loads
@@ -11,7 +12,7 @@ for line in stdin:
     j = loads(line)
     s = j['text']
     s = hp.unescape(s)
-    s = s.lower()
+    s = s.lower().encode('utf-8')
     s = s.replace("'", '')
     s = s.replace("’", '')
     s = s.replace('_', ' ')

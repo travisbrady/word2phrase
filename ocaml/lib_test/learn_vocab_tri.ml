@@ -29,7 +29,9 @@ let () =
     In_channel.iter_lines stdin ~f:(fun line ->
         incr line_no;
         if !line_no mod 100_000 = 0 then eprintf "Line: %d\n%!" !line_no;
-        let words = String.split line ~on:' ' in
+        let words = String.split line ~on:' '
+            |> List.filter ~f:(fun x -> x <> "" && x <> " ")
+        in
         let n_words = List.length words in
         total_words := !total_words + n_words;
         triloop h words;
@@ -43,4 +45,5 @@ let () =
     eprintf "Now Write file\n";
     printf "%d\n" !total_words;
     List.iter al ~f:(fun (x, y) -> printf "%s,%d\n" x y)
+
 
