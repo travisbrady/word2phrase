@@ -7,9 +7,6 @@ Given a document or documents this program attempts to learn phrases.
 It does so by progressively joining adjacent pairs of words with an '_' character.
 You can then run the code multiple times to create multiword phrases.
 
-For more detail on this check out: https://code.google.com/p/word2vec/
-and Mikolov's paper: http://arxiv.org/abs/1310.4546
-
 Take a look at [example.py](example.py) for an example of using this code from Python. The example requires the textblob module (available via pip) to tokenize the input.
 
 The OCaml directory contains a simple ocaml implementation of the code.
@@ -40,3 +37,7 @@ $ cat text8-phrase-py| tr ' ' '\n' | grep '_' | python wordcount.py 20
 959 roman_catholic
 940 air_force
 ```
+
+###More Information
+For more detail on the (very simple) approach ere check out: https://code.google.com/p/word2vec/
+and Mikolov's paper: http://arxiv.org/abs/1310.4546
