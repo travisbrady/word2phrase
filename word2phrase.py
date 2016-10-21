@@ -39,6 +39,8 @@ def learn_vocab_from_train_iter(train_iter):
     vocab = defaultdict(int)
     train_words = 0
     for line in train_iter:
+        if line == []:    # If there are multiple empty lines following each other, the loop is broken
+          continue        # without giving any errors. That line solves the problem. (Ahmet Aksoy 20160721)
         for pair in pairwise(line):
             vocab[pair[0]] += 1
             if None not in pair:
