@@ -38,6 +38,7 @@ $ cat text8-phrase-py| tr ' ' '\n' | grep '_' | python wordcount.py 20
 940 air_force
 ```
 
-###More Information
-For more detail on the (very simple) approach ere check out: https://code.google.com/p/word2vec/
-and Mikolov's paper: http://arxiv.org/abs/1310.4546
+### More Information
+For more detail on the (very simple) approach here check out:
+- https://github.com/tmikolov/word2vec
+- Mikolov's paper: http://arxiv.org/abs/1310.4546
