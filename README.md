@@ -9,8 +9,6 @@ You can then run the code multiple times to create multiword phrases.
 
 Take a look at [example.py](example.py) for an example of using this code from Python. The example requires the textblob module (available via pip) to tokenize the input.
 
-The OCaml directory contains a simple ocaml implementation of the code.
-
 Example using the text8 corpus used in Mikolov's experiments:
 ```
 $ time python word2phrase.py --train=text8 --output=text8-phrase-py --min-count=5 --threshold=500.0
